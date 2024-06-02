@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class GlocalExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -19,5 +19,16 @@ public class GlocalExceptionHandler {
         Map<String, String> errorMessage = new HashMap<>();
         errorMessage.put("message", e.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<?> runtimeException(RuntimeException e) {
+        Map<String, String> errorMessage = new HashMap<>();
+//        errorMessage.put("message", e.getMessage());
+//        ResponseEntity<String> errorMessage = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+        errorMessage.put("message", e.getMessage());
+    return new ResponseEntity<Map<String, String>>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 }
