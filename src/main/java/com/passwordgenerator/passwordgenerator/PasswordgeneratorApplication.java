@@ -16,16 +16,4 @@ public class PasswordgeneratorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PasswordgeneratorApplication.class, args);
 	}
-
-	@GetMapping("/generate/{passwordLenght}")
-	public ResponseEntity<String> generatePasswd(@PathVariable Integer passwordLenght) {
-
-		if (passwordLenght < 26) {
-			return ResponseEntity.status(HttpStatus.OK).body("Apenas é permitido gerar senhas a partir de 26 caracteres");
-		}
-
-		var password = PasswordGenerator.generate(passwordLenght);
-
-		return ResponseEntity.status(HttpStatus.OK).body(password);
-	}
 }
