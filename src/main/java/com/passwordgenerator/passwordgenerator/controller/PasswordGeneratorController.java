@@ -18,9 +18,9 @@ public class PasswordGeneratorController {
     @Autowired
     private PasswordGeneratorService passwordGeneratorService;
 
-    @GetMapping("/{passwordLenght}")
-    public ResponseEntity<Map<String, String>> generate(@PathVariable Integer passwordLenght) {
-        Map<String, String> passwordGeneratedResponse = passwordGeneratorService.generatePasswordResponse(passwordLenght);
+    @GetMapping("/{passwordLength}")
+    public ResponseEntity<Map<String, String>> generate(@PathVariable Integer passwordLength) {
+        Map<String, String> passwordGeneratedResponse = passwordGeneratorService.generatePasswordResponse(passwordLength);
         return ResponseEntity.status(HttpStatus.OK).body(passwordGeneratedResponse);
     }
 }
