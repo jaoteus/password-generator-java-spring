@@ -37,7 +37,7 @@ const PasswordGenerator = () => {
         placeholder="Comprimento da senha"
       />
       <button onClick={handleGeneratePassword}>Gerar</button>
-      {password && <div className="password">Senha Gerada: {password}</div>}
+      {password && <div className="password"> <span className="password-header">Senha Gerada:</span> {password}</div>}
       {error && <div className="error">{error}</div>}
     </div>
   );
